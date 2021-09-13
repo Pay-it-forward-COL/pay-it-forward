@@ -21,6 +21,14 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# devise
+gem 'devise'
+# JWT authentication for devise with configurable token revocation strategies
+gem 'devise-jwt', '~> 0.5.9'
+gem 'warden-jwt_auth', '~> 0.3.6'
+gem 'dry-configurable', '0.9.0'
+gem 'rack-cors'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
