@@ -1,9 +1,5 @@
 name: CI/CD
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-18.04
@@ -47,15 +43,9 @@ jobs:
           bundle exec rake db:create
           bundle exec rake db:migrate
           bundle exec rspec .
-      - name: Deploy to production
-        stage: deploy
-        variables:
-          HEROKU_APP_NAME: pay-it-forward-app
-        dependencies:
-      - integration_test
-      - system_test
-      only:
-        - master
-      script:
-      - gem install dpl
-      - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: pay-it-forward-app #Must be unique in Heroku
+          heroku_email: daorejuela1@outlook.com
