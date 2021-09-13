@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.4'
 
+gem 'aasm'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
@@ -21,6 +22,14 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# devise
+gem 'devise'
+# JWT authentication for devise with configurable token revocation strategies
+gem 'devise-jwt', '~> 0.5.9'
+gem 'warden-jwt_auth', '~> 0.3.6'
+gem 'dry-configurable', '0.9.0'
+gem 'rack-cors'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # Reduces boot times through caching; required in config/boot.rb
@@ -31,6 +40,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails', groups: [:development, :test]
   gem 'rspec-rails', ">= 3.9.0"
+  gem 'annotate'
 end
 
 group :development do
