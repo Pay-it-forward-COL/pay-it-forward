@@ -10,24 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_021401) do
+ActiveRecord::Schema.define(version: 2021_09_13_053234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "allowlisted_jwts", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.string "jti", null: false
-    t.string "aud", null: false
-    t.datetime "exp", null: false
-    t.string "remote_ip"
-    t.string "os_data"
-    t.string "browser_data"
-    t.string "device_data"
+  create_table "favors", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title"
+    t.text "description"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["jti"], name: "index_allowlisted_jwts_on_jti", unique: true
-    t.index ["users_id"], name: "index_allowlisted_jwts_on_users_id"
+    t.string "aasm_state"
+    t.index ["user_id"], name: "index_favors_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,5 +42,4 @@ ActiveRecord::Schema.define(version: 2021_09_13_021401) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "allowlisted_jwts", "users", column: "users_id", on_delete: :cascade
 end
