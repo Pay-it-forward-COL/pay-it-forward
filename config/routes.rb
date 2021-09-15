@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users, skip: %i[registrations sessions passwords]
+  root to: 'favors#index'
+  devise_for :users
   devise_scope :user do
     post '/signup', to: 'registrations#create'
     post '/login', to: 'sessions#create'
     delete '/logout', to: 'sessions#destroy'
   end
+
+  namespace :admin do
+    resources :users
+    resources :favors
+    root 'favors#index'
+  end
+
 
   namespace :api do
     namespace :v1 do

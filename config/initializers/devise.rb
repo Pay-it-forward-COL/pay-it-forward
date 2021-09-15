@@ -9,25 +9,12 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  # ...
-  config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}],
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
-    jwt.expiration_time = 14.days.to_i
-    # Use default aud_header
-    #jwt.aud_header = 'JWT_AUD'
-  end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'd33996a1f4f46929bfbbf5065ab939210839f92ddbe52165ff3a820889c9e4bc07946213253c56271a272acb31b312d2dce8f41fc7c7d61fd0d52d6d6981989d'
+  # config.secret_key = '349ecaf8c1a783fc89b1bab506739bb1688913a8049cf258921dec9e10116abdec032e4fc217c3439fd04643dd2883948e4c8e10c381ee52936752db35a1e9e0'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -110,7 +97,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth, :params_auth]
+  config.skip_session_storage = [:http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -139,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '3747127335c09779d08d6e5f100d31a042462012715baa6c10dc1aa50e3022a499186274e526ed40deb67dce95996ce267a6b2850debc7ae13cd4c3cf3547efa'
+  # config.pepper = 'ef4feb9f203d91a9396de6e7197998609ea532af53d147bc08c5795d35b3b690653c15b6065311742bf29602eb71f2437523eabded5ceca3b82dc440f4028e38'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -318,6 +305,18 @@ Devise.setup do |config|
 
   # ==> Configuration for :registerable
 
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}],
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+    jwt.expiration_time = 14.days.to_i
+    # Use default aud_header
+    #jwt.aud_header = 'JWT_AUD'
+  end
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
