@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.4'
 
 gem 'aasm'
+gem "administrate"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 # Use postgresql as the database for Active Record
@@ -23,7 +24,8 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # devise
-gem 'devise'
+gem 'devise', '~>4.8.0'
+gem 'devise-bootstrap-views', '~> 1.0'
 # JWT authentication for devise with configurable token revocation strategies
 gem 'devise-jwt', '~> 0.5.9'
 gem 'warden-jwt_auth', '~> 0.3.6'
